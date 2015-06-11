@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wo6-lO-50B">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="SZG-I4-3yG">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wo6-lO-50B" customClass="ViewController" customModule="MapKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="wCB-2K-Imy"/>
+                        <viewControllerLayoutGuide type="bottom" id="27h-bf-ycJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="t9N-kQ-8ba">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trQ-3k-f5Y">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="F8h-ts-3hy"/>
+                                    <constraint firstAttribute="width" constant="600" id="eSD-0a-V3M"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Hybrid" style="plain" id="j6j-5o-AiG">
+                                        <connections>
+                                            <action selector="changeMapMode:" destination="wo6-lO-50B" id="H2d-mx-3Zz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="09e-c3-e8W"/>
+                                    <barButtonItem title="Satellite" id="I4s-Of-C5R">
+                                        <connections>
+                                            <action selector="changeMapMode:" destination="wo6-lO-50B" id="VLM-Wk-1d9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YXZ-j6-K9n"/>
+                                    <barButtonItem title="Standard" id="uot-3S-eXc">
+                                        <connections>
+                                            <action selector="changeMapMode:" destination="wo6-lO-50B" id="PT6-l1-pZQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nek-ku-ifW">
+                                <rect key="frame" x="0.0" y="57" width="600" height="499"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current city title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5D-ll-PCG">
+                                <rect key="frame" x="239" y="28" width="122" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="trQ-3k-f5Y" secondAttribute="trailing" id="OTf-k4-kNU"/>
+                            <constraint firstItem="trQ-3k-f5Y" firstAttribute="bottom" secondItem="27h-bf-ycJ" secondAttribute="top" id="bUk-fu-JNz"/>
+                            <constraint firstAttribute="centerX" secondItem="y5D-ll-PCG" secondAttribute="centerX" id="nHX-3w-ZQr"/>
+                            <constraint firstItem="y5D-ll-PCG" firstAttribute="top" secondItem="wCB-2K-Imy" secondAttribute="bottom" constant="8" id="zjS-Yz-Cwg"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0e6-am-DEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3760" y="760"/>
         </scene>
     </scenes>
 </document>
