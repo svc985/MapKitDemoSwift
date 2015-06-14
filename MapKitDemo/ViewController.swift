@@ -12,11 +12,25 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var mMapView: MKMapView!
+    var gestureRecognizer = UITapGestureRecognizer()
+    
+    var cities = ["","","","","", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleGesture:")
+        mMapView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func handleGesture(gestureRecognizer: UITapGestureRecognizer) {
         
-        // Do any additional setup after loading the view, typically from a nib.
+        var point = gestureRecognizer.locationInView(self.mMapView)
+  
+        var tapPoint = self.mMapView.convertPoint(point, toCoordinateFromView: self.view)
+  
+        println("latitude: \(tapPoint.latitude) longitude\(tapPoint.longitude)")
+        
     }
 
     override func didReceiveMemoryWarning() {

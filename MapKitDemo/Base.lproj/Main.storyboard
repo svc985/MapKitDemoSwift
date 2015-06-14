@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wo6-lO-50B">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,10 +20,6 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trQ-3k-f5Y">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="F8h-ts-3hy"/>
-                                    <constraint firstAttribute="width" constant="600" id="eSD-0a-V3M"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem title="Hybrid" style="plain" id="j6j-5o-AiG">
                                         <connections>
@@ -42,11 +40,30 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nek-ku-ifW">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nek-ku-ifW">
                                 <rect key="frame" x="0.0" y="57" width="600" height="499"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nek-ku-ifW" secondAttribute="height" multiplier="300:251" constant="3.5856573705178789" id="ivl-Xg-IHp"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="F5d-PH-008" appends="YES" id="Opc-AS-Jfw"/>
+                                </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current city title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5D-ll-PCG">
-                                <rect key="frame" x="239" y="28" width="122" height="21"/>
+                                <rect key="frame" x="246" y="28" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxI-74-7gH">
+                                <rect key="frame" x="564" y="28" width="20" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4k-FY-ev7">
+                                <rect key="frame" x="16" y="29" width="10" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,14 +71,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="C4k-FY-ev7" firstAttribute="top" secondItem="wCB-2K-Imy" secondAttribute="bottom" constant="9" id="7pN-jq-toi"/>
+                            <constraint firstItem="nek-ku-ifW" firstAttribute="top" secondItem="y5D-ll-PCG" secondAttribute="bottom" constant="8" symbolic="YES" id="A38-1s-yRb"/>
+                            <constraint firstItem="ZxI-74-7gH" firstAttribute="trailing" secondItem="t9N-kQ-8ba" secondAttribute="trailingMargin" id="FsZ-3b-Mjh"/>
+                            <constraint firstItem="ZxI-74-7gH" firstAttribute="top" secondItem="wCB-2K-Imy" secondAttribute="bottom" constant="8" symbolic="YES" id="GhC-aj-vxB"/>
+                            <constraint firstItem="ZxI-74-7gH" firstAttribute="baseline" secondItem="y5D-ll-PCG" secondAttribute="baseline" constant="-1" id="Kix-bO-2AY"/>
                             <constraint firstAttribute="trailing" secondItem="trQ-3k-f5Y" secondAttribute="trailing" id="OTf-k4-kNU"/>
+                            <constraint firstItem="C4k-FY-ev7" firstAttribute="leading" secondItem="t9N-kQ-8ba" secondAttribute="leadingMargin" id="OfF-On-K1N"/>
+                            <constraint firstItem="nek-ku-ifW" firstAttribute="leading" secondItem="t9N-kQ-8ba" secondAttribute="leadingMargin" constant="-16" id="YMu-it-n04"/>
                             <constraint firstItem="trQ-3k-f5Y" firstAttribute="bottom" secondItem="27h-bf-ycJ" secondAttribute="top" id="bUk-fu-JNz"/>
                             <constraint firstAttribute="centerX" secondItem="y5D-ll-PCG" secondAttribute="centerX" id="nHX-3w-ZQr"/>
-                            <constraint firstItem="y5D-ll-PCG" firstAttribute="top" secondItem="wCB-2K-Imy" secondAttribute="bottom" constant="8" id="zjS-Yz-Cwg"/>
+                            <constraint firstItem="trQ-3k-f5Y" firstAttribute="leading" secondItem="nek-ku-ifW" secondAttribute="leading" id="owD-oi-uhx"/>
+                            <constraint firstItem="trQ-3k-f5Y" firstAttribute="top" secondItem="nek-ku-ifW" secondAttribute="bottom" symbolic="YES" id="zU1-bM-gKL"/>
+                            <constraint firstItem="y5D-ll-PCG" firstAttribute="top" secondItem="wCB-2K-Imy" secondAttribute="bottom" constant="8" symbolic="YES" id="zjS-Yz-Cwg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mMapView" destination="nek-ku-ifW" id="cHF-80-0wv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0e6-am-DEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="F5d-PH-008"/>
             </objects>
             <point key="canvasLocation" x="3760" y="760"/>
         </scene>

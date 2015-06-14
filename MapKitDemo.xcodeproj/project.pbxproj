@@ -14,6 +14,8 @@
 		10E0DBB81B28C89F0026E9D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E0DBB61B28C89F0026E9D8 /* LaunchScreen.xib */; };
 		10E0DBC41B28C89F0026E9D8 /* MapKitDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0DBC31B28C89F0026E9D8 /* MapKitDemoTests.swift */; };
 		10E0DBCE1B28CFD90026E9D8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E0DBCD1B28CFD90026E9D8 /* MapKit.framework */; };
+		10E4D8AB1B2DC5B800CCB55F /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4D8AA1B2DC5B800CCB55F /* City.swift */; };
+		10E4D8AD1B2DC8C100CCB55F /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10E4D8AC1B2DC8C100CCB55F /* level1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		10E0DBC21B28C89F0026E9D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10E0DBC31B28C89F0026E9D8 /* MapKitDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitDemoTests.swift; sourceTree = "<group>"; };
 		10E0DBCD1B28CFD90026E9D8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		10E4D8AA1B2DC5B800CCB55F /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		10E4D8AC1B2DC8C100CCB55F /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 		10E0DBAA1B28C89F0026E9D8 /* MapKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				10E4D8AA1B2DC5B800CCB55F /* City.swift */,
 				10E0DBAD1B28C89F0026E9D8 /* AppDelegate.swift */,
 				10E0DBAF1B28C89F0026E9D8 /* ViewController.swift */,
 				10E0DBB11B28C89F0026E9D8 /* Main.storyboard */,
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				10E0DBAC1B28C89F0026E9D8 /* Info.plist */,
+				10E4D8AC1B2DC8C100CCB55F /* level1.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 				10E0DBB31B28C89F0026E9D8 /* Main.storyboard in Resources */,
 				10E0DBB81B28C89F0026E9D8 /* LaunchScreen.xib in Resources */,
 				10E0DBB51B28C89F0026E9D8 /* Images.xcassets in Resources */,
+				10E4D8AD1B2DC8C100CCB55F /* level1.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +230,7 @@
 			files = (
 				10E0DBB01B28C89F0026E9D8 /* ViewController.swift in Sources */,
 				10E0DBAE1B28C89F0026E9D8 /* AppDelegate.swift in Sources */,
+				10E4D8AB1B2DC5B800CCB55F /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
