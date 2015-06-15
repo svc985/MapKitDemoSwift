@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class City: NSObject {
+class City: NSObject, NilLiteralConvertible {
     
     var name: String
     var location: CLLocationCoordinate2D
@@ -20,6 +20,14 @@ class City: NSObject {
         self.name = name
         self.location = location
         self.shortDescription = shortDescription
+    }
+    
+    required init(nilLiteral: ()) {
+        
+        name = ""
+        location = CLLocationCoordinate2D()
+        shortDescription = ""
+        
     }
    
 }

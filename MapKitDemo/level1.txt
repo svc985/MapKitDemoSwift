@@ -2,4 +2,3 @@ city:latitude:longitude:short description
 Belgrade:44.818611:20.468056: The only serbian word which is accepted and in use across the world is vampir (vampire)
 Paris:48.866667:2.333333:There is only one stop sign in the whole of Paris
 Moscow:55.7522222:37.6155556:The people of Moscow are known as Moskvitch in Russian
-

@@ -87,6 +87,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mCityLabel" destination="y5D-ll-PCG" id="p66-s3-63G"/>
                         <outlet property="mMapView" destination="nek-ku-ifW" id="cHF-80-0wv"/>
                     </connections>
                 </viewController>
