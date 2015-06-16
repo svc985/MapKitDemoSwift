@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10DF397A1B2F5A830029B1D1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10DF39791B2F5A830029B1D1 /* Settings.bundle */; };
 		10E0DBAE1B28C89F0026E9D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0DBAD1B28C89F0026E9D8 /* AppDelegate.swift */; };
 		10E0DBB01B28C89F0026E9D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0DBAF1B28C89F0026E9D8 /* ViewController.swift */; };
 		10E0DBB31B28C89F0026E9D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10E0DBB11B28C89F0026E9D8 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10DF39791B2F5A830029B1D1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = MapKitDemo/Settings.bundle; sourceTree = "<group>"; };
 		10E0DBA81B28C89F0026E9D8 /* MapKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E0DBAC1B28C89F0026E9D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10E0DBAD1B28C89F0026E9D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		10E0DB9F1B28C89F0026E9D8 = {
 			isa = PBXGroup;
 			children = (
+				10DF39791B2F5A830029B1D1 /* Settings.bundle */,
 				10E0DBCD1B28CFD90026E9D8 /* MapKit.framework */,
 				10E0DBAA1B28C89F0026E9D8 /* MapKitDemo */,
 				10E0DBC01B28C89F0026E9D8 /* MapKitDemoTests */,
@@ -212,6 +215,7 @@
 			files = (
 				10E0DBB31B28C89F0026E9D8 /* Main.storyboard in Resources */,
 				10E0DBB81B28C89F0026E9D8 /* LaunchScreen.xib in Resources */,
+				10DF397A1B2F5A830029B1D1 /* Settings.bundle in Resources */,
 				10E0DBB51B28C89F0026E9D8 /* Images.xcassets in Resources */,
 				10E4D8AD1B2DC8C100CCB55F /* level1.txt in Resources */,
 			);

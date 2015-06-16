@@ -18,11 +18,46 @@ class ViewController: UIViewController {
     
     var cities = [City]()
     var currentCity: City = nil
+    
+    let distances = ["easy": 100000, "medium": 75000, "hard": 50000]
+    
+    var distance = 0 {
         
+        didSet {
+            
+            println("distance is now: \(distance)")
+        }
+    }
+    
+    var currentDifficulty : String = "" {
+    
+        didSet {
+            
+            println("Current difficulty is now: \(currentDifficulty)")
+            distance = distances[currentDifficulty]!
+        }
+    }
+            
     var currentLevel = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var userDefaults = NSUserDefaults.standardUserDefaults()
+        if let difficulty = userDefaults.valueForKey("idMultiValue") as? String {
+            
+            currentDifficulty = difficulty
+        }
+        
+        let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (notification) -> Void in
+            
+            var userDefaults = NSUserDefaults.standardUserDefaults()
+            if let difficulty = userDefaults.valueForKey("idMultiValue") as? String {
+                
+                self.currentDifficulty = difficulty
+            }
+            
+        }
 
         gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleGesture:")
         mMapView.addGestureRecognizer(gestureRecognizer)
@@ -32,6 +67,12 @@ class ViewController: UIViewController {
         for city in cities {
             println(city.name)
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
     }
     
     func loadLevel(currentLevel: Int) {
