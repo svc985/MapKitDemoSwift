@@ -43,9 +43,9 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>easy</string>
-				<string>medium</string>
-				<string>hard</string>
+				<integer>100000</integer>
+				<integer>75000</integer>
+				<integer>50000</integer>
 			</array>
 			<key>DefaultValue</key>
 			<string>medium</string>

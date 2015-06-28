@@ -19,22 +19,22 @@ class ViewController: UIViewController {
     var cities = [City]()
     var currentCity: City = nil
     
-    let distances = ["easy": 100000, "medium": 75000, "hard": 50000]
+    //let distances = ["easy": 100000, "medium": 75000, "hard": 50000]
     
-    var distance = 0 {
+    //var distance = 0 {
         
-        didSet {
+    //    didSet {
             
-            println("distance is now: \(distance)")
-        }
-    }
+    //        println("distance is now: \(distance)")
+    //    }
+    //}
     
-    var currentDifficulty : String = "" {
+    var currentDifficulty : Int = 0 {
     
         didSet {
             
             println("Current difficulty is now: \(currentDifficulty)")
-            distance = distances[currentDifficulty]!
+            //distance = distances[currentDifficulty]!
         }
     }
             
@@ -44,18 +44,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         var userDefaults = NSUserDefaults.standardUserDefaults()
-        if let difficulty = userDefaults.valueForKey("idMultiValue") as? String {
+        currentDifficulty = userDefaults.integerForKey("idMultiValue") as Int
             
-            currentDifficulty = difficulty
-        }
+            //currentDifficulty = difficulty
+        
         
         let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (notification) -> Void in
             
             var userDefaults = NSUserDefaults.standardUserDefaults()
-            if let difficulty = userDefaults.valueForKey("idMultiValue") as? String {
+            self.currentDifficulty = userDefaults.integerForKey("idMultiValue") as Int
                 
-                self.currentDifficulty = difficulty
-            }
+                //self.currentDifficulty = difficulty
+            
             
         }
 
