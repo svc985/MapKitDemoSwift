@@ -29,5 +29,6 @@ class City: NSObject, NilLiteralConvertible {
         shortDescription = ""
         
     }
-   
+    
 }
+

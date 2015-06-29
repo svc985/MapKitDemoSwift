@@ -13,28 +13,31 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mMapView: MKMapView!
     @IBOutlet weak var mCityLabel: UILabel!
+    @IBOutlet weak var mScoreLabel: UILabel!
     
     var gestureRecognizer = UITapGestureRecognizer()
     
     var cities = [City]()
-    var currentCity: City = nil
-    
-    //let distances = ["easy": 100000, "medium": 75000, "hard": 50000]
-    
-    //var distance = 0 {
+    var currentCity: City = nil {
         
-    //    didSet {
-            
-    //        println("distance is now: \(distance)")
-    //    }
-    //}
+        didSet {
+            mCityLabel.text = currentCity.name
+        }
+    }
     
-    var currentDifficulty : Int = 0 {
+    var currentDifficulty:Double = 0 {
     
         didSet {
             
-            println("Current difficulty is now: \(currentDifficulty)")
-            //distance = distances[currentDifficulty]!
+            //println("Current difficulty is now: \(currentDifficulty)")
+
+        }
+    }
+    
+    var score:Int = 0 {
+        
+        didSet {
+            mScoreLabel.text = "\(score)"
         }
     }
             
@@ -44,18 +47,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         var userDefaults = NSUserDefaults.standardUserDefaults()
-        currentDifficulty = userDefaults.integerForKey("idMultiValue") as Int
-            
-            //currentDifficulty = difficulty
-        
+        currentDifficulty = userDefaults.doubleForKey("idMultiValue") as Double
         
         let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (notification) -> Void in
             
             var userDefaults = NSUserDefaults.standardUserDefaults()
-            self.currentDifficulty = userDefaults.integerForKey("idMultiValue") as Int
-                
-                //self.currentDifficulty = difficulty
-            
+            self.currentDifficulty = userDefaults.doubleForKey("idMultiValue") as Double
             
         }
 
@@ -63,10 +60,7 @@ class ViewController: UIViewController {
         mMapView.addGestureRecognizer(gestureRecognizer)
         
         loadLevel(currentLevel)
-        
-        for city in cities {
-            println(city.name)
-        }
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -99,9 +93,7 @@ class ViewController: UIViewController {
             }
         }
         
-        let randomNumber = Helper.randomInt(minInt: 0, maxInt: cities.count)
-        currentCity = cities[randomNumber]
-        mCityLabel.text = currentCity.name
+        currentCity = cities[Helper.randomInt(minInt: 0, maxInt: cities.count)]
         
     }
     
@@ -115,7 +107,48 @@ class ViewController: UIViewController {
         let point2 = MKMapPointForCoordinate(currentCity.location)
         let distance = MKMetersBetweenMapPoints(point1, point2)
         
-        println(distance)
+        if currentDifficulty >= distance {
+            //println("Success")
+            score++
+            if let nextCityToDisplay = loadNextCity() {
+                currentCity = nextCityToDisplay
+            }
+            else {
+                println("move to next level")
+            }
+        
+        }
+        else {
+            println("Fail, cD\(currentDifficulty), distance:\(distance)")
+        }
+        
+    }
+    
+    func loadNextCity() -> City? {
+        
+        var index = 0
+        
+        for city in cities {
+            
+            if city.name == currentCity.name {
+                break
+            }
+                
+            else {
+                index++
+            }
+            
+        }
+        
+        let removedCity = cities.removeAtIndex(index)
+        
+        if cities.count == 0 {
+            return nil
+        }
+        
+        var randomInt = Helper.randomInt(minInt:0, maxInt:cities.count)
+        
+        return cities[randomInt]
         
     }
 
