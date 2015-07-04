@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10DC18651B4325580082E1EA /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10DC18641B4325580082E1EA /* level2.txt */; };
+		10DCD3721B4472A300CF0368 /* MyAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DCD3711B4472A300CF0368 /* MyAlertController.swift */; };
 		10DF397A1B2F5A830029B1D1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10DF39791B2F5A830029B1D1 /* Settings.bundle */; };
 		10E0DBAE1B28C89F0026E9D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0DBAD1B28C89F0026E9D8 /* AppDelegate.swift */; };
 		10E0DBB01B28C89F0026E9D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0DBAF1B28C89F0026E9D8 /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10DC18641B4325580082E1EA /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
+		10DCD3711B4472A300CF0368 /* MyAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAlertController.swift; sourceTree = "<group>"; };
 		10DF39791B2F5A830029B1D1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = MapKitDemo/Settings.bundle; sourceTree = "<group>"; };
 		10E0DBA81B28C89F0026E9D8 /* MapKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E0DBAC1B28C89F0026E9D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		10E0DBAA1B28C89F0026E9D8 /* MapKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				10DCD3711B4472A300CF0368 /* MyAlertController.swift */,
 				10E4D8AE1B2DE14900CCB55F /* Helper.swift */,
 				10E4D8AA1B2DC5B800CCB55F /* City.swift */,
 				10E0DBAD1B28C89F0026E9D8 /* AppDelegate.swift */,
@@ -107,6 +112,7 @@
 			children = (
 				10E0DBAC1B28C89F0026E9D8 /* Info.plist */,
 				10E4D8AC1B2DC8C100CCB55F /* level1.txt */,
+				10DC18641B4325580082E1EA /* level2.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 			files = (
 				10E0DBB31B28C89F0026E9D8 /* Main.storyboard in Resources */,
 				10E0DBB81B28C89F0026E9D8 /* LaunchScreen.xib in Resources */,
+				10DC18651B4325580082E1EA /* level2.txt in Resources */,
 				10DF397A1B2F5A830029B1D1 /* Settings.bundle in Resources */,
 				10E0DBB51B28C89F0026E9D8 /* Images.xcassets in Resources */,
 				10E4D8AD1B2DC8C100CCB55F /* level1.txt in Resources */,
@@ -237,6 +244,7 @@
 			files = (
 				10E0DBB01B28C89F0026E9D8 /* ViewController.swift in Sources */,
 				10E0DBAE1B28C89F0026E9D8 /* AppDelegate.swift in Sources */,
+				10DCD3721B4472A300CF0368 /* MyAlertController.swift in Sources */,
 				10E4D8AB1B2DC5B800CCB55F /* City.swift in Sources */,
 				10E4D8AF1B2DE14900CCB55F /* Helper.swift in Sources */,
 			);

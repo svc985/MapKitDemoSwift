@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         }
     }
             
-    var currentLevel = 1
+    var currentLevel = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,19 @@ class ViewController: UIViewController {
         gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleGesture:")
         mMapView.addGestureRecognizer(gestureRecognizer)
         
-        loadLevel(currentLevel)
+        createAlertController()
+        
+//        dispatch_async(dispatch_get_main_queue()) {
+//        
+//            var ac = UIAlertController(title: "MapKit game - DEMO", message: "Level \(self.currentLevel). Ready?", preferredStyle: .Alert)
+//            var okAction = UIAlertAction(title: "OK", style: .Cancel) { [unowned self] (action) in
+//                self.loadLevel(self.currentLevel)
+//            }
+//            ac.addAction(okAction)
+//            
+//            //UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(ac, animated: true, completion: nil)
+//            self.presentViewController(ac, animated: true, completion: nil)
+//        }
 
     }
     
@@ -99,6 +111,11 @@ class ViewController: UIViewController {
     
     func handleGesture(gestureRecognizer: UITapGestureRecognizer) {
         
+        //MARK: next line to be removed
+        if currentLevel == 3 {
+            return
+        }
+        
         var point = gestureRecognizer.locationInView(self.mMapView)
   
         var tapPoint = self.mMapView.convertPoint(point, toCoordinateFromView: self.view)
@@ -114,17 +131,25 @@ class ViewController: UIViewController {
                 currentCity = nextCityToDisplay
             }
             else {
-                println("move to next level")
+                currentLevel++
+                println("move to level\(currentLevel)")
+                
+                createAlertController()
+                //loadLevel(++currentLevel)
             }
         
         }
         else {
-            println("Fail, cD\(currentDifficulty), distance:\(distance)")
+            //println("Fail, cD\(currentDifficulty), distance:\(distance)")
         }
         
     }
     
     func loadNextCity() -> City? {
+        
+        if cities.count == 0 {
+            return nil
+        }
         
         var index = 0
         
@@ -151,7 +176,23 @@ class ViewController: UIViewController {
         return cities[randomInt]
         
     }
+    
+    func createAlertController() {
+    
+        let myAlertController = MyAlertController(title: "MapKit game - DEMO",
+            message: "Level \(self.currentLevel). Ready?",
+            preferredStyle: .Alert)
+        myAlertController.addAction(UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            if self.currentLevel < 3 {
+                self.loadLevel(self.currentLevel)
+            }
+            
+            })
+        
+        myAlertController.show()
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -1,0 +1,2 @@
+city:latitude:longitude:short description
+Berlin:52.5166667:13.4: The only serbian word which is accepted and in use across the world is vampir (vampire)
