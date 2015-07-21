@@ -14,26 +14,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var mMapView: MKMapView!
     @IBOutlet weak var mCityLabel: UILabel!
     @IBOutlet weak var mScoreLabel: UILabel!
+    @IBOutlet weak var mTimerLabel: UILabel!
     
     var gestureRecognizer = UITapGestureRecognizer()
     
-    var cities = [City]()
-    var currentCity: City = nil {
+    var cities = [String:City]()
+    var currentCity: String = "" {
         
         didSet {
-            mCityLabel.text = currentCity.name
+            mCityLabel.text = currentCity
         }
     }
     
-    var currentDifficulty:Double = 0 {
-    
-        didSet {
-            
-            //println("Current difficulty is now: \(currentDifficulty)")
-
-        }
-    }
-    
+    var currentDifficulty:Double = 0
     var score:Int = 0 {
         
         didSet {
@@ -41,7 +34,9 @@ class ViewController: UIViewController {
         }
     }
             
-    var currentLevel = 2
+    var currentLevel = 1
+ 
+    var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,18 +55,6 @@ class ViewController: UIViewController {
         mMapView.addGestureRecognizer(gestureRecognizer)
         
         createAlertController()
-        
-//        dispatch_async(dispatch_get_main_queue()) {
-//        
-//            var ac = UIAlertController(title: "MapKit game - DEMO", message: "Level \(self.currentLevel). Ready?", preferredStyle: .Alert)
-//            var okAction = UIAlertAction(title: "OK", style: .Cancel) { [unowned self] (action) in
-//                self.loadLevel(self.currentLevel)
-//            }
-//            ac.addAction(okAction)
-//            
-//            //UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(ac, animated: true, completion: nil)
-//            self.presentViewController(ac, animated: true, completion: nil)
-//        }
 
     }
     
@@ -99,20 +82,21 @@ class ViewController: UIViewController {
                     
                     let city = City(name: cityParts[0], andLocation: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), andShortDescription: cityParts[3])
 
-                    cities.append(city)
+                    cities[city.name] = city
                 }
                 
             }
         }
         
-        currentCity = cities[Helper.randomInt(minInt: 0, maxInt: cities.count)]
+        let randomNumber = Helper.randomInt(minInt: 0, maxInt: cities.count)
+        currentCity = Array(cities.keys)[randomNumber]
         
     }
     
     func handleGesture(gestureRecognizer: UITapGestureRecognizer) {
         
         //MARK: next line to be removed
-        if currentLevel == 3 {
+        if currentLevel == 4 {
             return
         }
         
@@ -121,21 +105,20 @@ class ViewController: UIViewController {
         var tapPoint = self.mMapView.convertPoint(point, toCoordinateFromView: self.view)
   
         let point1 = MKMapPointForCoordinate(tapPoint)
-        let point2 = MKMapPointForCoordinate(currentCity.location)
+        let point2 = MKMapPointForCoordinate(cities[currentCity]!.location)
         let distance = MKMetersBetweenMapPoints(point1, point2)
         
         if currentDifficulty >= distance {
             //println("Success")
             score++
+            
             if let nextCityToDisplay = loadNextCity() {
                 currentCity = nextCityToDisplay
             }
             else {
                 currentLevel++
-                println("move to level\(currentLevel)")
-                
+                //println("move to level\(currentLevel)")
                 createAlertController()
-                //loadLevel(++currentLevel)
             }
         
         }
@@ -145,35 +128,20 @@ class ViewController: UIViewController {
         
     }
     
-    func loadNextCity() -> City? {
+    func loadNextCity() -> String? {
+  
+        cities.removeValueForKey(currentCity)
         
         if cities.count == 0 {
+            timer?.invalidate()
+            println("mTimerLabel:\(mTimerLabel.text)")
+            mTimerLabel.text = "0"
             return nil
         }
         
-        var index = 0
-        
-        for city in cities {
-            
-            if city.name == currentCity.name {
-                break
-            }
-                
-            else {
-                index++
-            }
-            
-        }
-        
-        let removedCity = cities.removeAtIndex(index)
-        
-        if cities.count == 0 {
-            return nil
-        }
-        
-        var randomInt = Helper.randomInt(minInt:0, maxInt:cities.count)
-        
-        return cities[randomInt]
+        let randomInt = Helper.randomInt(minInt:0, maxInt:cities.count)
+
+        return Array(cities.keys)[randomInt]
         
     }
     
@@ -183,19 +151,30 @@ class ViewController: UIViewController {
             message: "Level \(self.currentLevel). Ready?",
             preferredStyle: .Alert)
         myAlertController.addAction(UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
-            if self.currentLevel < 3 {
+            if self.currentLevel < 4 {
+                
                 self.loadLevel(self.currentLevel)
+                //start Timer
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
             }
             
             })
         
-        myAlertController.show()
-
+        if self.currentLevel < 4 {
+            myAlertController.show()
+        }
+        else {
+            let ac = UIAlertController(title: "MapKit game - DEMO", message: "Game finished", preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func updateTimerLabel() {
+        
+        let timerAsString = self.mTimerLabel.text!
+        let timerAsDouble = (timerAsString as NSString).doubleValue + 0.01
+        self.mTimerLabel.text = String(stringInterpolationSegment: timerAsDouble)
     }
 
     @IBAction func changeMapMode(sender: UIBarButtonItem) {
@@ -222,10 +201,7 @@ class ViewController: UIViewController {
                         
         }
         
-            
     }
     
-        
-
 }
 
