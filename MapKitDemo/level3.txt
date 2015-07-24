@@ -1,2 +1,2 @@
 city:latitude:longitude:short description
-Copenhagen:55.676098:12.568337:Copenhagen text...
+Copenhagen:55.676098:12.568337:After a trip overseas, Walt Disney was inspired by what he saw at Tivoli Gardens Copenhagen and he created Disneyland based on similar concepts

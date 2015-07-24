@@ -1,2 +1,2 @@
 city:latitude:longitude:short description
-Berlin:52.5166667:13.4:Berlin text...
+Berlin:52.5166667:13.4:The first set of traffic lights in Europe was put into service in Potsdamer Platz in 1924

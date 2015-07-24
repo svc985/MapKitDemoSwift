@@ -9,26 +9,36 @@
 import UIKit
 import MapKit
 
-class City: NSObject, NilLiteralConvertible {
+class City: NSObject, NilLiteralConvertible, MKAnnotation {
     
     var name: String
-    var location: CLLocationCoordinate2D
+    var coordinate: CLLocationCoordinate2D
     var shortDescription: String
     
-    init(name: String, andLocation location: CLLocationCoordinate2D, andShortDescription shortDescription: String) {
+    init(name: String, andCoordinate coordinate: CLLocationCoordinate2D, andShortDescription shortDescription: String) {
         
         self.name = name
-        self.location = location
+        self.coordinate = coordinate
         self.shortDescription = shortDescription
+        
+        super.init()
     }
     
     required init(nilLiteral: ()) {
         
         name = ""
-        location = CLLocationCoordinate2D()
+        coordinate = CLLocationCoordinate2D()
         shortDescription = ""
         
     }
     
-}
+    var title: String {
+        return name
+    }
 
+    
+   //MARK: should be deleted ??
+    var subtitle: String {
+        return name
+    }
+}

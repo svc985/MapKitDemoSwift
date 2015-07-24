@@ -34,9 +34,17 @@ class ViewController: UIViewController {
         }
     }
             
-    var currentLevel = 1
+    var currentLevel = 2
  
     var timer:NSTimer?
+    
+    let regionRadius: CLLocationDistance = 400000
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+            regionRadius * 2.0, regionRadius * 2.0)
+        mMapView.setRegion(coordinateRegion, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +63,14 @@ class ViewController: UIViewController {
         mMapView.addGestureRecognizer(gestureRecognizer)
         
         createAlertController()
+        
+        // set initial location in Greenwich
+        //MARK: let initialLocation = CLLocation(latitude: 51.2838, longitude: 0)
+        let initialLocation = CLLocation(latitude: 52.5166667, longitude: 13.4)
+        
+        centerMapOnLocation(initialLocation)
+        
+        mMapView.delegate = self
 
     }
     
@@ -65,6 +81,8 @@ class ViewController: UIViewController {
     }
     
     func loadLevel(currentLevel: Int) {
+        
+        //mMapView.removeAnnotations(mMapView.annotations)
         
         if let filePath = NSBundle.mainBundle().pathForResource("level\(currentLevel)", ofType: "txt") {
             if let text = String(contentsOfFile: filePath, usedEncoding: nil, error: nil) {
@@ -80,7 +98,7 @@ class ViewController: UIViewController {
                     let longitudeString: NSString = cityParts[2]
                     let longitude = longitudeString.doubleValue
                     
-                    let city = City(name: cityParts[0], andLocation: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), andShortDescription: cityParts[3])
+                    let city = City(name: cityParts[0], andCoordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), andShortDescription: cityParts[3])
 
                     cities[city.name] = city
                 }
@@ -105,11 +123,12 @@ class ViewController: UIViewController {
         var tapPoint = self.mMapView.convertPoint(point, toCoordinateFromView: self.view)
   
         let point1 = MKMapPointForCoordinate(tapPoint)
-        let point2 = MKMapPointForCoordinate(cities[currentCity]!.location)
+        let point2 = MKMapPointForCoordinate(cities[currentCity]!.coordinate)
         let distance = MKMetersBetweenMapPoints(point1, point2)
         
         if currentDifficulty >= distance {
-            //println("Success")
+            println("Success: \(distance)")
+            mMapView.addAnnotation(cities[currentCity])
             score++
             
             if let nextCityToDisplay = loadNextCity() {
@@ -123,7 +142,7 @@ class ViewController: UIViewController {
         
         }
         else {
-            //println("Fail, cD\(currentDifficulty), distance:\(distance)")
+            //println("Fail, currentDifficulty:\(currentDifficulty), distance:\(distance)")
         }
         
     }
@@ -134,7 +153,7 @@ class ViewController: UIViewController {
         
         if cities.count == 0 {
             timer?.invalidate()
-            println("mTimerLabel:\(mTimerLabel.text)")
+            //println("mTimerLabel:\(mTimerLabel.text)")
             mTimerLabel.text = "0"
             return nil
         }
