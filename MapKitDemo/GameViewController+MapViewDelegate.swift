@@ -59,7 +59,8 @@ extension GameViewController: MKMapViewDelegate{
     
     @IBAction func dismissCityDetailsVCAndResumeGame(segue: UIStoryboardSegue) {
         //returned to game...
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
+        self.startTimer()
+        //timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
     }
     
 }

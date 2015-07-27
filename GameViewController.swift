@@ -40,6 +40,8 @@ class GameViewController: UIViewController {
     
     let regionRadius: CLLocationDistance = 400000
     
+    var isGameOver = false
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
@@ -174,7 +176,8 @@ class GameViewController: UIViewController {
                 
                 self.loadLevel(self.currentLevel)
                 //start Timer
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
+                self.startTimer()
+                //self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
             }
             
             })
@@ -186,6 +189,13 @@ class GameViewController: UIViewController {
             let ac = UIAlertController(title: "MapKit game - DEMO", message: "Game finished", preferredStyle: .Alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
             presentViewController(ac, animated: true, completion: nil)
+            isGameOver = true
+        }
+    }
+    
+    func startTimer() {
+        if !isGameOver {
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
         }
     }
     
