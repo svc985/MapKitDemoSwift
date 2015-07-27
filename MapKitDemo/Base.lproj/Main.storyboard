@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="SZG-I4-3yG">
             <objects>
-                <viewController id="wo6-lO-50B" customClass="ViewController" customModule="MapKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wo6-lO-50B" customClass="GameViewController" customModule="MapKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wCB-2K-Imy"/>
                         <viewControllerLayoutGuide type="bottom" id="27h-bf-ycJ"/>
@@ -125,7 +125,11 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="City name" id="iqk-rO-hA0">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="E2f-rs-GAJ"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="E2f-rs-GAJ">
+                                            <connections>
+                                                <segue destination="Ujr-mZ-9mO" kind="unwind" unwindAction="dismissCityDetailsVCAndResumeGame:" id="EWE-ZA-Bd1"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -153,6 +157,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieu-ti-Oha" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ujr-mZ-9mO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4080" y="662"/>
         </scene>

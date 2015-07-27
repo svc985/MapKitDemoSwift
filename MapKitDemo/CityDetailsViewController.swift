@@ -21,15 +21,9 @@ class CityDetailsViewController: UIViewController {
 
         super.viewDidLoad()
         
-        //mCityLabel.text = cityName
         mCityName.title = cityName
         mCityTriviaLabel.text = cityTrivia
         
     }
-    
-    @IBAction func dismissCityDetailsVC(sender: AnyObject) {
-        dismissViewControllerAnimated(true) {
-            println("dismissed")
-        }
-    }
+
 }

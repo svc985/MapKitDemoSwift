@@ -10,7 +10,7 @@ import UIKit
 
 class MyAlertController: UIAlertController {
 
-    /// The UIWindow that will be at the top of the window hierarchy. The DBAlertController instance is presented on the rootViewController of this window.
+    /// The UIWindow that will be at the top of the window hierarchy. The MyAlertController instance is presented on the rootViewController of this window.
     private lazy var alertWindow: UIWindow = {
         let window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window.rootViewController = UIViewController()
@@ -19,7 +19,7 @@ class MyAlertController: UIAlertController {
         }()
     
     /**
-    Present the DBAlertController on top of the visible UIViewController.
+    Present the MyAlertController on top of the visible UIViewController.
     
     :param: flag       Pass true to animate the presentation; otherwise, pass false. The presentation is animated by default.
     :param: completion The closure to execute after the presentation finishes.
