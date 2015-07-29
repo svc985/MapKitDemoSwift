@@ -1,11 +1,3 @@
-//
-//  CityDetailsViewController.swift
-//  MapKitDemo
-//
-//  Created by q on 7/22/15.
-//  Copyright (c) 2015 Prikic. All rights reserved.
-//
-
 import UIKit
 
 class CityDetailsViewController: UIViewController {
