@@ -13,8 +13,8 @@ class MyAlertController: UIAlertController {
     /**
     Present the MyAlertController on top of the visible UIViewController.
     
-    :param: flag       Pass true to animate the presentation; otherwise, pass false. The presentation is animated by default.
-    :param: completion The closure to execute after the presentation finishes.
+    - parameter flag:       Pass true to animate the presentation; otherwise, pass false. The presentation is animated by default.
+    - parameter completion: The closure to execute after the presentation finishes.
     */
     func show(animated flag: Bool = true, completion: (() -> Void)? = nil) {
         /**

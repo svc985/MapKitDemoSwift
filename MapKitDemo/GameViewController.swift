@@ -43,17 +43,22 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = NSUserDefaults.standardUserDefaults()
         currentDifficulty = userDefaults.doubleForKey("idMultiValue") as Double
         
-        let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (notification) -> Void in
+        //check if user default is set and if not set it here
+        if currentDifficulty == 0 {
+            currentDifficulty = 150000
+        }
+        
+        _ = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (notification) -> Void in
             
-            var userDefaults = NSUserDefaults.standardUserDefaults()
+            let userDefaults = NSUserDefaults.standardUserDefaults()
             self.currentDifficulty = userDefaults.doubleForKey("idMultiValue") as Double
             
         }
         
-        gestureRecognizer = UITapGestureRecognizer(target: self, action: "handleGesture:")
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleGesture(_:)))
         mMapView.addGestureRecognizer(gestureRecognizer)
         
         createAlertController()
@@ -79,7 +84,7 @@ class GameViewController: UIViewController {
         mMapView.removeAnnotations(mMapView.annotations)
         
         if let filePath = NSBundle.mainBundle().pathForResource("level\(currentLevel)", ofType: "txt") {
-            if let text = String(contentsOfFile: filePath, usedEncoding: nil, error: nil) {
+            if let text = try? String(contentsOfFile: filePath, usedEncoding: nil) {
                 var lines = text.componentsSeparatedByString("\n")
                 
                 lines.removeAtIndex(0)
@@ -100,7 +105,7 @@ class GameViewController: UIViewController {
             }
         }
         
-        let randomNumber = Helper.randomInt(minInt: 0, maxInt: cities.count)
+        let randomNumber = Helper.randomInt(0, maxInt: cities.count)
         currentCity = Array(cities.keys)[randomNumber]
         
     }
@@ -112,9 +117,9 @@ class GameViewController: UIViewController {
             return
         }
         
-        var point = gestureRecognizer.locationInView(self.mMapView)
+        let point = gestureRecognizer.locationInView(self.mMapView)
         
-        var tapPoint = self.mMapView.convertPoint(point, toCoordinateFromView: self.view)
+        let tapPoint = self.mMapView.convertPoint(point, toCoordinateFromView: self.view)
         
         let point1 = MKMapPointForCoordinate(tapPoint)
         let point2 = MKMapPointForCoordinate(cities[currentCity]!.coordinate)
@@ -122,21 +127,21 @@ class GameViewController: UIViewController {
         
         if currentDifficulty >= distance {
             //println("Success: \(distance)")
-            mMapView.addAnnotation(cities[currentCity])
-            score++
+            mMapView.addAnnotation(cities[currentCity]!)
+            score+=1
             
             if let nextCityToDisplay = loadNextCity() {
                 currentCity = nextCityToDisplay
             }
             else {
-                currentLevel++
+                currentLevel+=1
                 //println("move to level\(currentLevel)")
                 createAlertController()
             }
             
         }
         else {
-            //println("Fail, currentDifficulty:\(currentDifficulty), distance:\(distance)")
+            //print("Fail, currentDifficulty:\(currentDifficulty), distance:\(distance)")
         }
         
     }
@@ -152,7 +157,7 @@ class GameViewController: UIViewController {
             return nil
         }
         
-        let randomInt = Helper.randomInt(minInt:0, maxInt:cities.count)
+        let randomInt = Helper.randomInt(0, maxInt:cities.count)
         
         return Array(cities.keys)[randomInt]
         
@@ -185,7 +190,7 @@ class GameViewController: UIViewController {
     
     func startTimer() {
         if !isGameOver {
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(GameViewController.updateTimerLabel), userInfo: nil, repeats: true)
         }
     }
     

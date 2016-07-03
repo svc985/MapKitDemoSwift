@@ -24,13 +24,13 @@ class City: NSObject, NilLiteralConvertible, MKAnnotation {
         
     }
     
-    var title: String {
+    var title: String? {
         return name
     }
 
     
    //MARK: should be deleted ??
-    var subtitle: String {
+    var subtitle: String? {
         return name
     }
 }

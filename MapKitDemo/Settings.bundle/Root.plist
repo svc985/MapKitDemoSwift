@@ -48,7 +48,7 @@
 				<integer>100000</integer>
 			</array>
 			<key>DefaultValue</key>
-			<string>medium</string>
+			<integer>150000</integer>
 		</dict>
 	</array>
 </dict>
